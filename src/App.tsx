@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router';
-import { router } from './Routes';
+import { router } from '../Routes';
 import { AppProvider } from '@/Context/AppContext';
 import { AutheticationProvider } from '@/Context/AuthenticationContext';
 import { MenuProvider } from '@/Context/MenuContext';
