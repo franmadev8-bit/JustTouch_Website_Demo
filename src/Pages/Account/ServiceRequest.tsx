@@ -1,12 +1,16 @@
-import { Button, Card, Col, ConfigProvider, Divider, Flex, Image, Input, Row, Typography } from "antd";
+import { Button, Card, Col, 
+    // ConfigProvider, Divider, 
+    Flex, Image, Input, Row, Typography } from "antd";
 import { FC } from "react";
 import logo from '@/Public/JustTouch.svg';
 import { useApp } from "@/Hooks/AppHook";
 import { useFramerMotion } from "@/Hooks/MotionHook";
 import { motion } from 'framer-motion';
 import { useAuthenticationContext } from "@/Context/AuthenticationContext";
-import { useNavigate } from "react-router";
-const { Text, Title } = Typography;
+// import { useNavigate } from "react-router";
+const { 
+    // Text, 
+    Title } = Typography;
 
 export const ServiceRequest: FC = () => {
     const {  } = useAuthenticationContext();
@@ -64,33 +68,33 @@ const ServiceRequestForm: FC = () => {
     )
 }
 
-const EmailSendedNotification: FC = () => {
-    const { isLarge } = useApp();
-    const { fadeUp } = useFramerMotion();
-    const { user } = useAuthenticationContext();
-    const navigation = useNavigate();
+// const EmailSendedNotification: FC = () => {
+//     const { isLarge } = useApp();
+//     const { fadeUp } = useFramerMotion();
+//     const { user } = useAuthenticationContext();
+//     const navigation = useNavigate();
 
 
-    return (
-        <ConfigProvider theme={{
-            components: {
-                Typography: {
-                    fontSizeHeading1: isLarge ? 50 : 30,
-                    fontSize: isLarge ? 20 : 15
-                }
-            }
-        }}>
-            <motion.div variants={fadeUp} custom={.6} initial="hidden" animate="show" exit="exit">
-                <Flex vertical align="center" className="email-notification">
-                    <Title level={1}>¡Una cosa mas!</Title>
-                    <Divider style={{ backgroundColor: 'white' }} />
-                    <Text>Te hemos enviado un email para que confirmes tu direccion de correo.</Text>
-                    <Text>Revisa tu casilla de correo <b>{user.email}</b> para continuar.</Text>
-                    <Button color="blue" variant="solid"
-                        style={{ marginTop: 50 }}
-                        onClick={() => navigation('/sign-in')}>Volver al inicio</Button>
-                </Flex>
-            </motion.div>
-        </ConfigProvider>
-    )
-}
+//     return (
+//         <ConfigProvider theme={{
+//             components: {
+//                 Typography: {
+//                     fontSizeHeading1: isLarge ? 50 : 30,
+//                     fontSize: isLarge ? 20 : 15
+//                 }
+//             }
+//         }}>
+//             <motion.div variants={fadeUp} custom={.6} initial="hidden" animate="show" exit="exit">
+//                 <Flex vertical align="center" className="email-notification">
+//                     <Title level={1}>¡Una cosa mas!</Title>
+//                     <Divider style={{ backgroundColor: 'white' }} />
+//                     <Text>Te hemos enviado un email para que confirmes tu direccion de correo.</Text>
+//                     <Text>Revisa tu casilla de correo <b>{user.email}</b> para continuar.</Text>
+//                     <Button color="blue" variant="solid"
+//                         style={{ marginTop: 50 }}
+//                         onClick={() => navigation('/sign-in')}>Volver al inicio</Button>
+//                 </Flex>
+//             </motion.div>
+//         </ConfigProvider>
+//     )
+// }
