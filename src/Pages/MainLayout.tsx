@@ -8,6 +8,7 @@ import { useMenuContext } from "@/Context/MenuContext";
 import { Loading } from "@/Components/Loading";
 import { useAccountContext } from "@/Context/AccountContext";
 import './MainLayout.scss';
+import { useAuthenticationContext } from "@/Context/AuthenticationContext";
 
 const { Header, Sider, Content } = Layout;
 const { Text } = Typography;
@@ -26,6 +27,7 @@ export const MainLayout: FC<Props> = ({ Body, withSide = true }) => {
     const navigate = useNavigate();
     const { isMenuLoading } = useMenuContext();
     const { accountLoading } = useAccountContext();
+    const { SignOut } = useAuthenticationContext();
     const screens = useBreakpoint();
     const { collapsed, changeCollaped } = useApp();
     const sideItems: ItemType<MenuItemType>[] | undefined = [
@@ -55,7 +57,7 @@ export const MainLayout: FC<Props> = ({ Body, withSide = true }) => {
         {
             key: '2',
             icon: <FaPowerOff />,
-            onClick: () => navigate('/sign-in'),
+            onClick: () => SignOut(),
             label: (<a>Cerrar sesión</a>),
         },
     ];
