@@ -1,0 +1,163 @@
+@use "sass:map";
+$colors: (
+    primary: #00A8E8,
+    secondary: #005F73,
+    tertiary: #002A37,
+);
+
+
+@function getColor($name) {
+    @return map.get($colors , $name);
+}
+
+.main-layout {
+    height: 100%;
+}
+
+.layout-header {
+    background-color: getColor(primary);
+    display: flex;
+    align-items: center;
+    padding-inline: 20px;
+    gap: 20px;
+
+    span {
+        color: white;
+    }
+
+    span+button {
+        margin-left: auto;
+    }
+
+    button {
+        background-color: inherit;
+        border: none;
+        color: white;
+
+        &:hover {
+            background-color: getColor(primary) !important;
+        }
+    }
+}
+
+
+.floating-sider {
+    background-color: getColor(secondary) !important;
+    color: white;
+}
+
+.layout-sider {
+    padding-inline: 10px;
+
+    .side-header {
+        padding-top: 10px;
+    }
+
+    .divider {
+        background-color: white;
+    }
+}
+
+.layout-sider,
+.ant-menu-root,
+.sider-item {
+    background-color: getColor(secondary);
+    color: white !important;
+}
+
+.sider-item.ant-menu-item-selected {
+    background-color: getColor(primary) !important;
+}
+
+.layout-content {
+    position: relative;
+    overflow: auto;
+    padding-top: 5vh;
+}
+
+.page {
+    margin: auto;
+    width: 85%;
+    height: 100%;
+}
+
+.page-header {
+
+    .btn-save {
+        background-color: getColor(primary);
+    }
+
+    .btn-back {
+        border-color: getColor(primary);
+        color: getColor(primary);
+    }
+
+    h1 {
+        color: gray;
+        margin: 0;
+    }
+}
+
+.page-body {
+    height: 100% !important;
+}
+
+.page-actions {
+    margin-left: auto;
+}
+
+
+.loading-container {
+    position: absolute !important;
+    z-index: 5;
+    background: rgba(#000000, .4);
+    width: 100dvw;
+    height: 100dvh;
+
+    .loading {
+        position: relative;
+        width: 250px;
+        margin: auto;
+        top: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+
+        span {
+            background-color: getColor(primary);
+            height: 70px;
+            width: 40px !important;
+            animation: loading infinite;
+            animation-duration: .6s;
+            animation-delay: .1s !important;
+        }
+
+        span+span {
+            animation-delay: .2s !important;
+        }
+
+        span+span+span {
+            animation-delay: .3s !important;
+        }
+
+    }
+
+    @keyframes loading {
+        0% {
+            transform: scaleY(.1);
+            transform-origin: bottom;
+        }
+
+        50% {
+            transform: scaleY(1);
+            transform-origin: bottom;
+
+        }
+
+        100% {
+            transform: scaleY(.1);
+            transform-origin: bottom;
+        }
+    }
+}

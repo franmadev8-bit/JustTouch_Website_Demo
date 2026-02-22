@@ -1,0 +1,85 @@
+.order-list,
+.order-detail {
+    box-shadow: 0 2px 10px 0px lightgray;
+}
+
+.order-list {
+    overflow: auto;
+    max-height: 450px;
+
+    .ant-card-body {
+        padding: 0 !important;
+    }
+}
+
+.order-item {
+    span {
+        color: gray;
+        font-weight: bold;
+    }
+
+    p {
+        color: gray;
+        margin: 0;
+    }
+
+    border-bottom: 1px solid lightgray;
+    padding: 15px 10px;
+}
+
+.order-detail {
+    li,
+    p {
+        color: gray;
+        margin: 0;
+    }
+}
+
+.detail {
+    max-height: 275px;
+    overflow: auto;
+    margin-block: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+.detail-item {
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child { border-bottom: none; }
+}
+
+.detail-note {
+    background: #fafafa;
+    border-left: 3px solid #d9d9d9;
+    padding: 6px 10px;
+    border-radius: 0 6px 6px 0;
+}
+
+.detail-product-row {
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: #fafafa;
+    border: 1px solid #f0f0f0;
+}
+
+.detail-qty-badge {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #e6f4ff;
+    color: #1677ff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+.detail-totals {
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 12px 14px;
+    border: 1px solid #f0f0f0;
+}

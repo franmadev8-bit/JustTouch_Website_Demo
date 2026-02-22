@@ -1,0 +1,85 @@
+.catalogs {
+    height: 95%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.catalog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    button {
+        justify-content: start;
+    }
+}
+
+.product-list {
+    flex: 1;
+    overflow: auto;
+    max-height: 500px;
+}
+
+.product {
+    padding: 0 1rem 1rem 1rem;
+
+    p {
+        color: gray;
+        font-weight: bold;
+        margin-right: auto;
+    }
+
+    div>p {
+        font-weight: 300;
+    }
+}
+
+.info-category {
+    box-shadow: 0 2px 10px 0px lightgray;
+
+    span {
+        font-weight: 600;
+    }
+}
+
+.info-products {
+    a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .info-list {
+        overflow: auto;
+        max-height: 350px;
+    }
+}
+
+.product-item {
+    textarea {
+        resize: none;
+        width: 100%;
+        height: 70px;
+    }
+
+    // Columna del upload: alinear al top para que no se corra
+    .ant-col:last-child {
+        display: flex;
+        align-items: flex-start;
+    }
+}
+
+// Upload tamaño fijo 70×70 dentro de product-item
+.product-item .upload-picture-fixed {
+    .ant-upload-wrapper,
+    .ant-upload-list {
+        width: 70px !important;
+    }
+
+    .ant-upload.ant-upload-select,
+    .ant-upload-list-item-container,
+    .ant-upload-list-item {
+        width: 70px !important;
+        height: 70px !important;
+        margin: 0 !important;
+    }
+}
