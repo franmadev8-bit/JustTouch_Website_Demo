@@ -1,14 +1,14 @@
 import { createBrowserRouter } from "react-router";
-import { MainLayout } from "./src/Pages/MainLayout";
-import { MenuInfo } from "./src/Pages/Menu/MenuInfo";
-import { Menu } from "./src/Pages/Menu/Menu";
-import { PublicMenu } from "./src/Pages/Menu/PublicMenu";
-import { Account } from "./src/Pages/Account/Account";
-import { SignIn } from "./src/Pages/Account/SignIn";
-import { ServiceRequest } from "./src/Pages/Account/ServiceRequest";
-import { EmailConfirmation } from './src/Pages/Account/EmailConfirmation';
-import { Orders } from "./src/Pages/Orders/Orders";
-import { GateKeeper } from "./src/Pages/GateKeeper";
+import { MainLayout } from "./Pages/MainLayout";
+import { MenuInfo } from "./Pages/Menu/MenuInfo";
+import { Menu } from "./Pages/Menu/Menu";
+import { PublicMenu } from "./Pages/Menu/PublicMenu";
+import { Account } from "./Pages/Account/Account";
+import { SignIn } from "./Pages/Account/SignIn";
+import { ServiceRequest } from "./Pages/Account/ServiceRequest";
+import { EmailConfirmation } from './Pages/Account/EmailConfirmation';
+import { Orders } from "./Pages/Orders/Orders";
+import { GateKeeper } from "./Pages/GateKeeper";
 
 export const router = createBrowserRouter([
     // ── Ruta pública del menú — sin autenticación ──────────────────────────
