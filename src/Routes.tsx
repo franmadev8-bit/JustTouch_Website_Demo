@@ -13,7 +13,7 @@ import { GateKeeper } from "./Pages/GateKeeper";
 export const router = createBrowserRouter([
     // ── Ruta pública del menú — sin autenticación ──────────────────────────
     {
-        path: '/public/menu',
+        path: 'public/menu',
         element: <PublicMenu />,
     },
 
@@ -22,14 +22,14 @@ export const router = createBrowserRouter([
         path: '/',
         element: <GateKeeper />,
         children: [
-            { path: '/email-confirm/:email',             element: <EmailConfirmation /> },
-            { path: '/service-request',                  element: <ServiceRequest /> },
-            { path: '/sign-in',                          element: <SignIn /> },
-            { path: '/account',                          element: <MainLayout withSide={false} Body={<Account />} /> },
-            { path: '/orders',                           element: <MainLayout Body={<Orders />} /> },
-            { path: '/menu',                             element: <MainLayout Body={<Menu />} /> },
-            { path: '/menu/new/category',                element: <MainLayout Body={<MenuInfo />} /> },
-            { path: '/menu/edit/category/:categoryCode', element: <MainLayout Body={<MenuInfo />} /> },
+            { path: 'email-confirm/:email',             element: <EmailConfirmation /> },
+            { path: 'service-request',                  element: <ServiceRequest /> },
+            { path: 'sign-in',                          element: <SignIn /> },
+            { path: 'account',                          element: <MainLayout withSide={false} Body={<Account />} /> },
+            { path: 'orders',                           element: <MainLayout Body={<Orders />} /> },
+            { path: 'menu',                             element: <MainLayout Body={<Menu />} /> },
+            { path: 'menu/new/category',                element: <MainLayout Body={<MenuInfo />} /> },
+            { path: 'menu/edit/category/:categoryCode', element: <MainLayout Body={<MenuInfo />} /> },
         ]
     }
 ]);
