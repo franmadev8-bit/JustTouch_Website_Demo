@@ -9,6 +9,7 @@ import './Account.scss';
 import { User } from "@/Models/User";
 import { db } from "@/Database/Database";
 import { message } from "antd";
+import { useNavigate } from "react-router";
 
 const { Text, Title, Link } = Typography;
 
@@ -46,6 +47,7 @@ export const SignIn: FC = () => {
 }
 
 const SignInForm: FC = () => {
+    const navigate = useNavigate();
     const { fadeUp } = useFramerMotion();
     const { signingIn, SignIn } = useAuthenticationContext();
     const [user, setUser] = useState<User>(new User());
@@ -86,7 +88,7 @@ const SignInForm: FC = () => {
                         variant="solid"><p>Ingresar</p></Button>
                 </motion.div>
                 <motion.div variants={fadeUp} custom={.6} initial="hidden" animate="show" exit="exit">
-                    <p style={{ margin: 0, textAlign: 'center' }}>Si no eres cliente, solicita tu servicio <Link href="/service-request">Aqui.</Link> </p>
+                    <p style={{ margin: 0, textAlign: 'center' }}>Si no eres cliente, solicita tu servicio <Link onClick={()=> navigate('/service-request')}>Aqui.</Link> </p>
                 </motion.div>
             </Flex>
         </>
