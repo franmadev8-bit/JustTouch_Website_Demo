@@ -13,7 +13,8 @@ export const ServiceRequest: FC = () => {
 
     return (
         <div className="service-request">
-            {!true ? <ServiceRequestForm /> : <EmailSendedNotification />}
+           <ServiceRequestForm />
+            {/* {true ?  : <EmailSendedNotification />} */}
         </div>
     )
 }
