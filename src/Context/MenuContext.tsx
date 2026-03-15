@@ -106,7 +106,7 @@ export const MenuProvider: FC<ContextChildren> = ({ children }) => {
         }
     }
 
-    const AddCategory = async () => {
+   const AddCategory = async () => {
         if (!category.category) {
             message.error('Ingresá un nombre de categoría.');
             return;
@@ -124,49 +124,59 @@ export const MenuProvider: FC<ContextChildren> = ({ children }) => {
             const authData = await db.authData.get(1);
 
             if (isEdit) {
-                // Actualizar nombre
                 const existing = await db.category.where('categoryCode').equals(categoryCode).first();
                 if (existing) {
                     await db.category.update(existing.id, { category: category.category });
                 }
-                // Borrar productos viejos
                 await db.products.where('productCode').startsWith(categoryCode).delete();
             } else {
-                await db.category.add(new Category({
+                // CLAVE: Crear un objeto limpio sin ID para evitar ConstraintError
+                const newCat = {
                     category: category.category,
                     categoryCode,
-                    branchCode: authData?.BranchCode ?? 'demo',
-                    products: []
-                }));
+                    branchCode: authData?.BranchCode ?? 'demo'
+                };
+                // Usamos put por seguridad, aunque sea nueva
+                await db.category.put(newCat as Category);
             }
 
-            // Serializar imágenes primero (secuencial para evitar concurrencia con FileReader)
             const validProducts = category.products.filter(p => p.name && p.price);
-            const productsToInsert: Omit<Product, 'id'>[] = [];
+            const productsToInsert: Product[] = [];
+            
             for (let i = 0; i < validProducts.length; i++) {
                 const p = validProducts[i];
                 const imageBase64 = await serializeImages(p.image);
-                // Omitir 'id' para que Dexie autoincremental asigne la key correctamente
-                productsToInsert.push({
+                
+                // Creamos el objeto de producto asegurándonos de NO incluir la propiedad 'id'
+                const productData: any = {
                     name: p.name,
                     description: p.description,
                     price: p.price,
                     isAvailable: p.isAvailable ?? true,
-                    productCode: `${categoryCode}-prod-${i}`,
+                    productCode: `${categoryCode}-prod-${i}-${Date.now()}`, // Unicidad garantizada
                     pictureUrl: imageBase64[0] ?? '',
                     signedUrl: '',
-                    image: undefined
-                });
+                };
+                
+                // Eliminamos el id por si acaso viene en el modelo original
+                delete productData.id;
+                productsToInsert.push(productData as Product);
             }
-            // bulkAdd en una sola transacción atómica
-            await db.products.bulkAdd(productsToInsert as Product[]);
+
+            // Usar bulkPut para manejar cualquier residuo de llaves
+            await db.products.bulkPut(productsToInsert);
 
             message.success(isEdit ? 'Categoría actualizada.' : 'Categoría guardada.');
+            
+            // Resetear estados
             setCategory(new Category({ products: [new Product()] }));
             setMenu(new Menu());
+            
+            // Forzar recarga del menú antes de navegar
+            await GetMenu(true);
             window.location.href = '/menu';
         } catch (e) {
-            console.error('Error al guardar la categoría:', e);
+            console.error('Error detallado de Dexie:', e);
             message.error('Error al guardar la categoría.');
         } finally {
             setIsMenuLoading(false);
